@@ -41,9 +41,6 @@
     if (fontName.indexOf("-Bold") === fontName.length - "-Bold".length)
         isBold = YES;
 
-    if (fontName === "LucidaGrande" || fontName === "LucidaGrande-Bold")
-        fontName = "Arial";
-
     return [self _initWithName:fontName size:size bold:isBold];
 }
 
