@@ -108,6 +108,9 @@ var _CPimageAndTextViewFrameSizeChangedFlag         = 1 << 0,
         }
 
         _textSize = NULL;
+        
+        // Temporary
+        _imageOffset = 3;
     }
 
     return self;
