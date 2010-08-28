@@ -103,6 +103,9 @@ var _CPMenuBarVisible               = NO,
 
     if (menuBarShouldBeVisible)
     {
+        if (![CPApp mainMenu])
+            [_CPAppBootstrapper loadCiblessBrowserMainMenu]
+        
         if (!_CPMenuBarSharedWindow)
             _CPMenuBarSharedWindow = [[_CPMenuBarWindow alloc] init];
 

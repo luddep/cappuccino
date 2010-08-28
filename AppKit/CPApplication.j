@@ -1140,8 +1140,6 @@ var _CPAppBootstrapperActions = nil;
 
         return YES;
     }
-    else
-        [self loadCiblessBrowserMainMenu];
 
     return NO;
 }
