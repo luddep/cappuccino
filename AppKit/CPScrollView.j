@@ -82,21 +82,6 @@ var _nativeScrollbarWidth = nil;
 
         [self addSubview:_headerClipView];
         
-        _nativeScrollElement = document.createElement("div");
-        _nativeScrollElement.style.overflow = "scroll";
-        _nativeScrollElement.style.position = "absolute";
-        _nativeScrollElement.style.top = 0;
-        _nativeScrollElement.style.left = 0;
-        
-        var _nativeScrollStyleOverflow = - [[self class] _nativeScrollbarWidth] + @"px";
-        _nativeScrollElement.style.right = _nativeScrollStyleOverflow;
-        _nativeScrollElement.style.bottom = _nativeScrollStyleOverflow;
-        
-        self._DOMElement.appendChild(_nativeScrollElement);
-        
-        _innerNativeScrollElement = document.createElement("div");
-        _nativeScrollElement.appendChild(_innerNativeScrollElement);
-        
         [self setHasVerticalScroller:YES];
         [self setHasHorizontalScroller:YES];
     }
@@ -201,6 +186,41 @@ var _nativeScrollbarWidth = nil;
     document.body.removeChild(scrollElement);
     
     return _nativeScrollbarWidth;
+}
+
+/*!
+    Returns the native element used for scrolling
+*/
+- (DOMElement)_nativeScrollElement
+{
+    if (!_nativeScrollElement)
+    {
+        _nativeScrollElement = document.createElement("div");
+        _nativeScrollElement.style.overflow = "scroll";
+        _nativeScrollElement.style.position = "absolute";
+        _nativeScrollElement.style.top = 0;
+        _nativeScrollElement.style.left = 0;
+        
+        var _nativeScrollStyleOverflow = - [[self class] _nativeScrollbarWidth] + @"px";
+        _nativeScrollElement.style.right = _nativeScrollStyleOverflow;
+        _nativeScrollElement.style.bottom = _nativeScrollStyleOverflow;
+        
+        self._DOMElement.appendChild(_nativeScrollElement);
+        _nativeScrollElement.appendChild([self _innerNativeScrollElement]);
+    }
+    
+    return _nativeScrollElement;
+}
+
+/*!
+    Returns the element the inner element of the native scroll element.
+*/
+- (DOMElement)_innerNativeScrollElement
+{
+    if (!_innerNativeScrollElement)
+        _innerNativeScrollElement = document.createElement("div");
+    
+    return _innerNativeScrollElement;
 }
 
 // Determining component sizes
@@ -387,8 +407,9 @@ var _nativeScrollbarWidth = nil;
     --_recursionCount;
     
     // Update the native scroll elements
-    _innerNativeScrollElement.style.width = (_CGRectGetWidth(documentFrame) + horizontalScrollerHeight) + @"px";
-    _innerNativeScrollElement.style.height = (_CGRectGetHeight(documentFrame) + verticalScrollerWidth) + @"px";
+    var innerNativeScrollElement = [self _innerNativeScrollElement];
+    innerNativeScrollElement.style.width = (_CGRectGetWidth(documentFrame) + horizontalScrollerHeight) + @"px";
+    innerNativeScrollElement.style.height = (_CGRectGetHeight(documentFrame) + verticalScrollerWidth) + @"px";
 }
 
 // Managing Graphics Attributes
@@ -656,7 +677,7 @@ var _nativeScrollbarWidth = nil;
     [_contentView scrollToPoint:contentBounds.origin];
     
     // Keep the native scroll element up to date
-    _nativeScrollElement.scrollTop = contentBounds.origin.y;
+    [self _nativeScrollElement].scrollTop = contentBounds.origin.y;
 }
 
 /* @ignore */
@@ -690,7 +711,7 @@ var _nativeScrollbarWidth = nil;
     [_headerClipView scrollToPoint:CGPointMake(contentBounds.origin.x, 0.0)];
     
     // Keep the native scroll element up to date
-    _nativeScrollElement.scrollLeft = contentBounds.origin.x;
+    [self _nativeScrollElement].scrollLeft = contentBounds.origin.x;
 }
 
 /*!
@@ -859,23 +880,23 @@ var _nativeScrollbarWidth = nil;
 */
 - (void)scrollWheel:(CPEvent)anEvent
 {
-    // Let the native scroll element to it's thing.
+    // Let the native scroll element to its thing.
     [[[anEvent window] platformWindow] _propagateCurrentDOMEvent:YES];
 
     // The browser lags 1 event behind without this timeout.
     // --
-    // Tried to use [[CPRunLoop currentRunLoop] limitDateForMode:CPDefaultRunLoopMode];
-    // but this was the only fix.
-    // TODO: Figure out why?
+    // TODO: Figure out why & remove this hack.
     setTimeout(function(){
         
+        var nativeScrollElement = [self _nativeScrollElement];
+        
         // Get the scroll offset from the native element
-        var scrollOrigin = _CGPointMake(_nativeScrollElement.scrollLeft, _nativeScrollElement.scrollTop);
+        var scrollOrigin = _CGPointMake(nativeScrollElement.scrollLeft, nativeScrollElement.scrollTop);
     
         // Constrain the scroll element
         var constrainedOrigin = [_contentView constrainScrollPoint:scrollOrigin];
-        _nativeScrollElement.scrollLeft = constrainedOrigin.x;
-        _nativeScrollElement.scrollTop = constrainedOrigin.y;
+        nativeScrollElement.scrollLeft = constrainedOrigin.x;
+        nativeScrollElement.scrollTop = constrainedOrigin.y;
     
         // Scroll the views
         [_contentView scrollToPoint:constrainedOrigin];
