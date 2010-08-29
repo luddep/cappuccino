@@ -900,7 +900,7 @@ var _nativeScrollbarWidth = nil;
     
         // Scroll the views
         [_contentView scrollToPoint:constrainedOrigin];
-        [_headerClipView scrollToPoint:CGPointMake(constrainedOrigin.x, 0.0)];
+        [_headerClipView scrollToPoint:_CGPointMake(constrainedOrigin.x, 0.0)];
     
         // TODO: this!
         //var extraX = ((contentBounds.origin.x - constrainedOrigin.x) / _horizontalLineScroll) * [enclosingScrollView horizontalLineScroll],
