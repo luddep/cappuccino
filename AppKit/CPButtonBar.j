@@ -11,45 +11,6 @@
     CPArray _buttons;
 }
 
-+ (id)plusButton
-{
-    var button = [[CPButton alloc] initWithFrame:CGRectMake(0, 0, 35, 25)],
-        image = [[CPImage alloc] initWithContentsOfFile:[[CPBundle bundleForClass:[CPButtonBar class]] pathForResource:@"plus_button.png"] size:CGSizeMake(11, 12)];
-
-    [button setBordered:NO];
-    [button setImage:image];
-    [button setImagePosition:CPImageOnly];
-
-    return button;
-}
-
-+ (id)minusButton
-{
-    var button = [[CPButton alloc] initWithFrame:CGRectMake(0, 0, 35, 25)],
-        image = [[CPImage alloc] initWithContentsOfFile:[[CPBundle bundleForClass:[CPButtonBar class]] pathForResource:@"minus_button.png"] size:CGSizeMake(11, 4)];
-
-    [button setBordered:NO];
-    [button setImage:image];
-    [button setImagePosition:CPImageOnly];
-
-    return button;
-}
-
-+ (id)actionPopupButton
-{
-    var button = [[CPPopUpButton alloc] initWithFrame:CGRectMake(0, 0, 35, 25)],
-        image = [[CPImage alloc] initWithContentsOfFile:[[CPBundle bundleForClass:[CPButtonBar class]] pathForResource:@"action_button.png"] size:CGSizeMake(22, 14)];
-
-    [button addItemWithTitle:nil];
-    [[button lastItem] setImage:image];
-    [button setImagePosition:CPImageOnly];
-    [button setValue:CGInsetMake(0, 0, 0, 0) forThemeAttribute:"content-inset"];
-
-    [button setPullsDown:YES];
-
-    return button;
-}
-
 + (CPString)themeClass
 {
     return @"button-bar";
