@@ -82,6 +82,7 @@ var CPProgressIndicatorSpinningStyleColors  = nil,
 */
 + (void)initialize
 {
+    /*
     if (self != [CPProgressIndicator class])
         return;
     
@@ -95,7 +96,7 @@ var CPProgressIndicatorSpinningStyleColors  = nil,
         [bundle pathForResource:@"CPProgressIndicator/CPProgressIndicatorSpinningStyleRegular.gif"] size:CGSizeMake(64.0, 64.0)]];
     CPProgressIndicatorSpinningStyleColors[CPRegularControlSize]    = [CPColor colorWithPatternImage:[[CPImage alloc] initWithContentsOfFile:
         [bundle pathForResource:@"CPProgressIndicator/CPProgressIndicatorSpinningStyleRegular.gif"] size:CGSizeMake(64.0, 64.0)]];
-
+    
     CPProgressIndicatorBezelBorderViewPool = [];
     
     var start = CPProgressIndicatorBarStyle,
@@ -137,6 +138,7 @@ var CPProgressIndicatorSpinningStyleColors  = nil,
         CPProgressIndicatorStyleSizes[prefix + smallIdentifier] = [_CGSizeMake(3.0, 16.0), _CGSizeMake(1.0, 16.0), _CGSizeMake(3.0, 16.0)];
         CPProgressIndicatorStyleSizes[prefix + miniIdentifier] = [_CGSizeMake(3.0, 16.0), _CGSizeMake(1.0, 16.0), _CGSizeMake(3.0, 16.0)];
     }
+    */
 }
 
 - (id)initWithFrame:(CGRect)aFrame

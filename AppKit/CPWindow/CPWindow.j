@@ -335,9 +335,11 @@ var CPWindowResizeTime = 0.2;
     if (self != [CPWindow class])
         return;
 
+    /*
     var bundle = [CPBundle bundleForClass:[CPWindow class]];
 
     CPWindowSavingImage = [[CPImage alloc] initWithContentsOfFile:[bundle pathForResource:@"CPProgressIndicator/CPProgressIndicatorSpinningStyleRegular.gif"] size:CGSizeMake(16.0, 16.0)]
+    */
 }
 
 - (id)init

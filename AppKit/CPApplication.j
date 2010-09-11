@@ -1148,11 +1148,12 @@ var _CPAppBootstrapperActions = nil;
 
 + (void)loadCiblessBrowserMainMenu
 {
+    /*
     var mainMenu = [[CPMenu alloc] initWithTitle:@"MainMenu"];
 
     // FIXME: We should implement autoenabling.
     [mainMenu setAutoenablesItems:NO];
-
+    
     var bundle = [CPBundle bundleForClass:[CPApplication class]],
         newMenuItem = [[CPMenuItem alloc] initWithTitle:@"New" action:@selector(newDocument:) keyEquivalent:@"n"];
 
@@ -1205,6 +1206,7 @@ var _CPAppBootstrapperActions = nil;
     [mainMenu addItem:[CPMenuItem separatorItem]];
 
     [CPApp setMainMenu:mainMenu];
+    */
 }
 
 + (void)cibDidFinishLoading:(CPCib)aCib

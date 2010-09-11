@@ -1172,12 +1172,12 @@ var themedButtonValues = nil,
 
     [buttonBar setHasResizeControl:YES];
 
-    var popup = [CPButtonBar actionPopupButton];
+    /*var popup = [CPButtonBar actionPopupButton];
     [popup addItemWithTitle:"Item 1"];
     [popup addItemWithTitle:"Item 2"];
 
-    [buttonBar setButtons:[[CPButtonBar plusButton], [CPButtonBar minusButton], popup]];
-
+    //[buttonBar setButtons:[[CPButtonBar plusButton], [CPButtonBar minusButton], popup]];
+    */
     return buttonBar;
 }
 

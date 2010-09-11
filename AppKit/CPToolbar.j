@@ -540,11 +540,13 @@ var _CPToolbarItemInfoMake = function(anIndex, aView, aLabel, aMinWidth)
     if (self !== [_CPToolbarView class])
         return;
 
+    /*
     var bundle = [CPBundle bundleForClass:self];
 
     _CPToolbarViewExtraItemsImage = [[CPImage alloc] initWithContentsOfFile: [bundle pathForResource:"_CPToolbarView/_CPToolbarViewExtraItemsImage.png"] size: CPSizeMake(10.0, 15.0)];
 
     _CPToolbarViewExtraItemsAlternateImage = [[CPImage alloc] initWithContentsOfFile: [bundle pathForResource:"_CPToolbarView/_CPToolbarViewExtraItemsAlternateImage.png"] size:CGSizeMake(10.0, 15.0)];
+    */
 }
 
 - (id)initWithFrame:(CGRect)aFrame

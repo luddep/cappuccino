@@ -266,8 +266,9 @@ var STANDARD_GRADIENT_HEIGHT                    = 41.0;
 
                 _CPStandardWindowViewCloseButtonImage = [[CPImage alloc] initWithContentsOfFile:[bundle pathForResource:@"CPWindow/Standard/CPWindowStandardCloseButton.png"] size:CGSizeMake(16.0, 16.0)];
                 _CPStandardWindowViewCloseButtonHighlightedImage  = [[CPImage alloc] initWithContentsOfFile:[bundle pathForResource:@"CPWindow/Standard/CPWindowStandardCloseButtonHighlighted.png"] size:CGSizeMake(16.0, 16.0)];
-                _CPStandardWindowViewCloseButtonUnsavedImage = [[CPImage alloc] initWithContentsOfFile:[bundle pathForResource:@"CPWindow/Standard/CPWindowStandardCloseButtonUnsaved.png"] size:CGSizeMake(16.0, 16.0)];
+                /*_CPStandardWindowViewCloseButtonUnsavedImage = [[CPImage alloc] initWithContentsOfFile:[bundle pathForResource:@"CPWindow/Standard/CPWindowStandardCloseButtonUnsaved.png"] size:CGSizeMake(16.0, 16.0)];
                 _CPStandardWindowViewCloseButtonUnsavedHighlightedImage  = [[CPImage alloc] initWithContentsOfFile:[bundle pathForResource:@"CPWindow/Standard/CPWindowStandardCloseButtonUnsavedHighlighted.png"] size:CGSizeMake(16.0, 16.0)];
+                */
             }
 
             _closeButton = [[CPButton alloc] initWithFrame:CGRectMake(8.0, 7.0, 16.0, 16.0)];
